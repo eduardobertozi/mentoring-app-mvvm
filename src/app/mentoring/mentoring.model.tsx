@@ -5,10 +5,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { SchemaMentoring } from './mentoring.schema'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { api } from '@/lib/api'
 import { REGISTRATION_STATUS_MESSAGES } from './mentoring.messages'
+import { ICreateMentoringAgendaService } from './services/mentoring-agenda.service'
 
-export const useMentoringModel = () => {
+type MentoringModelProps = {
+  createMentoringAgendaService: ICreateMentoringAgendaService
+}
+
+export const useMentoringModel = ({
+  createMentoringAgendaService,
+}: MentoringModelProps) => {
   const [alert, setAlert] = useState<RegistrationResult | null>(null)
 
   const {
@@ -20,10 +26,7 @@ export const useMentoringModel = () => {
   })
 
   const { mutate } = useMutation<string, AxiosError, SchemaMentoringType>({
-    mutationFn: async (data) => {
-      const response = await api.post('/events', data)
-      return response.data
-    },
+    mutationFn: async (data) => createMentoringAgendaService.execute(data),
     onError: () => setAlert(REGISTRATION_STATUS_MESSAGES.error),
     onSuccess: () => setAlert(REGISTRATION_STATUS_MESSAGES.success),
   })
