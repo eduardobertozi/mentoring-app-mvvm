@@ -1,5 +1,8 @@
-import { api } from '@/lib/api'
-import { SchemaMentoringType } from '../mentoring.types'
+import {
+  HTTPMethod,
+  IHTTPClientGateway,
+} from '@/repositories/http-client-gateway'
+import { SchemaMentoringType } from '@/app/mentoring/mentoring.types'
 
 export interface ICreateMentoringAgendaService {
   execute: (data: SchemaMentoringType) => Promise<string>
@@ -8,9 +11,17 @@ export interface ICreateMentoringAgendaService {
 export class CreateMentoringAgendaService
   implements ICreateMentoringAgendaService
 {
+  constructor(private readonly httpClient: IHTTPClientGateway) {}
+
   async execute(body: SchemaMentoringType): Promise<string> {
-    const { data } = await api.post<string>('/events', body)
-    return data
+    return this.httpClient.sendRequest<string, SchemaMentoringType>({
+      endpoint: '/events',
+      method: HTTPMethod.POST,
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   }
 }
 

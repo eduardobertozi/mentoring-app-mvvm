@@ -5,11 +5,15 @@ import { MentoringView } from './mentoring.view'
 import {
   CreateMentoringAgendaService,
   MockCreateMentoringAgendaServiceSuccess,
-} from './services/mentoring-agenda.service'
+} from '../../services/mentoring/mentoring-agenda.service'
+import { AxiosHttpClient } from '@/infra/http/axios-http-client'
 
 const MentoringPage = () => {
+  const httpClient = AxiosHttpClient.create()
   // const createMentoringAgendaService = MockCreateMentoringAgendaServiceSuccess
-  const createMentoringAgendaService = new CreateMentoringAgendaService()
+  const createMentoringAgendaService = new CreateMentoringAgendaService(
+    httpClient,
+  )
   const methods = useMentoringModel({
     createMentoringAgendaService,
   })

@@ -6,7 +6,7 @@ import { SchemaMentoring } from './mentoring.schema'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { REGISTRATION_STATUS_MESSAGES } from './mentoring.messages'
-import { ICreateMentoringAgendaService } from './services/mentoring-agenda.service'
+import { ICreateMentoringAgendaService } from '../../services/mentoring/mentoring-agenda.service'
 
 type MentoringModelProps = {
   createMentoringAgendaService: ICreateMentoringAgendaService
