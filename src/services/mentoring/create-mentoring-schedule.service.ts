@@ -15,7 +15,7 @@ export class CreateMentoringScheduleService
 
   async execute(body: SchemaMentoringType): Promise<string> {
     return this.httpClient.sendRequest<string, SchemaMentoringType>({
-      endpoint: '/events',
+      endpoint: 'events',
       method: HTTPMethod.POST,
       body,
       headers: {
