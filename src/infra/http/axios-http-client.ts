@@ -10,8 +10,9 @@ export class AxiosHttpClient implements IHTTPClientGateway {
     private baseUrl: string,
   ) {}
 
-  static create() {
-    return new AxiosHttpClient(axios, 'http://localhost:3333')
+  /* Signleton :D */
+  static create(baseUrl = 'http://localhost:3333') {
+    return new AxiosHttpClient(axios, baseUrl)
   }
 
   async sendRequest<TResponse, TBody = unknown>(request: HTTPRequest<TBody>) {

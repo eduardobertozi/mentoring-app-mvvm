@@ -4,12 +4,12 @@ import {
 } from '@/repositories/http-client-gateway'
 import { SchemaMentoringType } from '@/app/mentoring/mentoring.types'
 
-export interface ICreateMentoringAgendaService {
+export interface ICreateMentoringScheduleService {
   execute: (data: SchemaMentoringType) => Promise<string>
 }
 
-export class CreateMentoringAgendaService
-  implements ICreateMentoringAgendaService
+export class CreateMentoringScheduleService
+  implements ICreateMentoringScheduleService
 {
   constructor(private readonly httpClient: IHTTPClientGateway) {}
 
@@ -26,7 +26,7 @@ export class CreateMentoringAgendaService
 }
 
 /* Exemplo de uso para demonstrar o valor de se usar injeção e inversão de dependência */
-export const MockCreateMentoringAgendaServiceSuccess: ICreateMentoringAgendaService =
+export const MockCreateMentoringScheduleServiceSuccess: ICreateMentoringScheduleService =
   {
     execute: async (body: SchemaMentoringType) => {
       return new Promise((resolve) => resolve('teste'))

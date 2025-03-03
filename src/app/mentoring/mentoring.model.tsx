@@ -6,14 +6,14 @@ import { SchemaMentoring } from './mentoring.schema'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { REGISTRATION_STATUS_MESSAGES } from './mentoring.messages'
-import { ICreateMentoringAgendaService } from '../../services/mentoring/mentoring-agenda.service'
+import { ICreateMentoringScheduleService } from '../../services/mentoring/create-mentoring-schedule.service'
 
 type MentoringModelProps = {
-  createMentoringAgendaService: ICreateMentoringAgendaService
+  createMentoringScheduleService: ICreateMentoringScheduleService
 }
 
 export const useMentoringModel = ({
-  createMentoringAgendaService,
+  createMentoringScheduleService,
 }: MentoringModelProps) => {
   const [alert, setAlert] = useState<RegistrationResult | null>(null)
 
@@ -26,7 +26,7 @@ export const useMentoringModel = ({
   })
 
   const { mutate } = useMutation<string, AxiosError, SchemaMentoringType>({
-    mutationFn: async (data) => createMentoringAgendaService.execute(data),
+    mutationFn: async (data) => createMentoringScheduleService.execute(data),
     onError: () => setAlert(REGISTRATION_STATUS_MESSAGES.error),
     onSuccess: () => setAlert(REGISTRATION_STATUS_MESSAGES.success),
   })
