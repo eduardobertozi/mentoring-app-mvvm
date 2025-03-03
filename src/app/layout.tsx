@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import QueryProvider from './query-provider'
+import QueryProvider from '../lib/query-provider'
 import { Toaster } from '@/components/ui/sonner'
 
 const inter = Inter({

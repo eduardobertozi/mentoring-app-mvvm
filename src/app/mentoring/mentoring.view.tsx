@@ -29,11 +29,12 @@ export const MentoringView = (props: MentoringViewProps) => {
           <form
             className="space-y-4"
             onSubmit={props.handleSubmit(props.onSubmit)}
+            data-testid="form-mentoring"
           >
             <Label>Nome</Label>
             <Input type="text" placeholder="Nome" {...props.register('name')} />
             {props.errors.name && (
-              <ErrorMessage>{props.errors.name.message}</ErrorMessage>
+              <ErrorMessage errors={props.errors} name="name" />
             )}
 
             <Label>E-mail</Label>
@@ -43,7 +44,7 @@ export const MentoringView = (props: MentoringViewProps) => {
               {...props.register('email')}
             />
             {props.errors.email && (
-              <ErrorMessage>{props.errors.email.message}</ErrorMessage>
+              <ErrorMessage errors={props.errors} name="email" />
             )}
 
             <Label>Telefone</Label>
@@ -53,7 +54,7 @@ export const MentoringView = (props: MentoringViewProps) => {
               {...props.register('phone')}
             />
             {props.errors.phone && (
-              <ErrorMessage>{props.errors.phone.message}</ErrorMessage>
+              <ErrorMessage errors={props.errors} name="phone" />
             )}
 
             <p className="text-sm text-zinc-600">
@@ -66,6 +67,7 @@ export const MentoringView = (props: MentoringViewProps) => {
             <Button
               className="w-full bg-blue-600 hover:bg-blue-700 rounded-none"
               type="submit"
+              data-testid="button-submit"
               disabled={props.isSubmitting}
             >
               {props.isSubmitting ? 'Enviando...' : 'Enviar'}
