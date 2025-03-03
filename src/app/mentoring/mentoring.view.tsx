@@ -1,27 +1,60 @@
+import { Input } from '@/components/ui/input'
 import { useMentoringModel } from './mentoring.model'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
+import { ErrorMessage } from '@/components/error-message'
 
 type MentoringViewProps = ReturnType<typeof useMentoringModel>
 
 export const MentoringView = (props: MentoringViewProps) => {
   return (
     <main className="grid place-items-center w-full h-screen">
-      <form
-        className="flex flex-col gap-2 w-[20rem] p-4 rounded border"
-        onSubmit={props.handleSubmit(props.onSubmit)}
-      >
-        <input type="text" placeholder="Nome" {...props.register('name')} />
-        {props.errors.name && <p>{props.errors.name.message}</p>}
+      <Card className="w-[25rem]">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">FalaDev Mentoria</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form
+            className="space-y-4"
+            onSubmit={props.handleSubmit(props.onSubmit)}
+          >
+            <Label>Nome</Label>
+            <Input type="text" placeholder="Nome" {...props.register('name')} />
+            {props.errors.name && (
+              <ErrorMessage>{props.errors.name.message}</ErrorMessage>
+            )}
 
-        <input type="email" placeholder="E-mail" {...props.register('email')} />
-        {props.errors.email && <p>{props.errors.email.message}</p>}
+            <Label>E-mail</Label>
+            <Input
+              type="email"
+              placeholder="E-mail"
+              {...props.register('email')}
+            />
+            {props.errors.email && (
+              <ErrorMessage>{props.errors.email.message}</ErrorMessage>
+            )}
 
-        <input type="tel" placeholder="Telefone" {...props.register('phone')} />
-        {props.errors.phone && <p>{props.errors.phone.message}</p>}
+            <Label>Telefone</Label>
+            <Input
+              type="tel"
+              placeholder="Telefone"
+              {...props.register('phone')}
+            />
+            {props.errors.phone && (
+              <ErrorMessage>{props.errors.phone.message}</ErrorMessage>
+            )}
 
-        <button type="submit" disabled={props.isSubmitting}>
-          {props.isSubmitting ? 'Enviando...' : 'Enviar'}
-        </button>
-      </form>
+            <Button
+              className="w-full bg-blue-600 hover:bg-blue-700 rounded-none"
+              type="submit"
+              disabled={props.isSubmitting}
+            >
+              {props.isSubmitting ? 'Enviando...' : 'Enviar'}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
 
       {props.alert && (
         <div
