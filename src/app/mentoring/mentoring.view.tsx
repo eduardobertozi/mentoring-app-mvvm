@@ -1,9 +1,16 @@
 import { Input } from '@/components/ui/input'
 import { useMentoringModel } from './mentoring.model'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { ErrorMessage } from '@/components/error-message'
+import Link from 'next/link'
 
 type MentoringViewProps = ReturnType<typeof useMentoringModel>
 
@@ -13,6 +20,10 @@ export const MentoringView = (props: MentoringViewProps) => {
       <Card className="w-[25rem]">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">FalaDev Mentoria</CardTitle>
+          <CardDescription>
+            Olá! Junte-se a maior plataforma de mentorias para desenvolvedores
+            do Brasil. Faça seu pré cadastro preenchendo o formulário abaixo.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form
@@ -45,6 +56,13 @@ export const MentoringView = (props: MentoringViewProps) => {
               <ErrorMessage>{props.errors.phone.message}</ErrorMessage>
             )}
 
+            <p className="text-sm text-zinc-600">
+              Ou clice para{' '}
+              <Link href="#" className="underline font-semibold">
+                acessar a plataforma
+              </Link>
+            </p>
+
             <Button
               className="w-full bg-blue-600 hover:bg-blue-700 rounded-none"
               type="submit"
@@ -55,19 +73,6 @@ export const MentoringView = (props: MentoringViewProps) => {
           </form>
         </CardContent>
       </Card>
-
-      {props.alert && (
-        <div
-          className={`${
-            props.alert.status === 'success'
-              ? 'bg-green-100 text-green-900'
-              : 'bg-red-100 text-red-900'
-          } p-4 rounded mt-4`}
-        >
-          <h2 className="text-lg font-semibold">{props.alert.title}</h2>
-          <p>{props.alert.description}</p>
-        </div>
-      )}
     </main>
   )
 }
