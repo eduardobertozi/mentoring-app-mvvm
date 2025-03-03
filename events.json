@@ -1,0 +1,28 @@
+{
+  "events": [
+    {
+      "name": "John Dow",
+      "email": "johndoe@example.com",
+      "phone": "47991778899",
+      "id": "f53e"
+    },
+    {
+      "id": "da14"
+    },
+    {
+      "id": "3578"
+    },
+    {
+      "id": "19e2",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "phone": "4791919292"
+    },
+    {
+      "id": "98b1",
+      "name": "EDUARDO APARECIDO BERTOZI JUNIOR",
+      "email": "edu.desenvolvedorweb@gmail.com",
+      "phone": "47992209347"
+    }
+  ]
+}
